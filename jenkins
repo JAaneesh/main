@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout source code from Git repository using credentials
+                git credentialsId: 'JAaneesh', url: 'https://github.com/JAaneesh/Repo.git'
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+        always {
+            echo 'Pipeline completed!'
+        }
+    }
+}
+
